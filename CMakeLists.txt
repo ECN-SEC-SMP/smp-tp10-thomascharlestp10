@@ -19,7 +19,7 @@ FetchContent_Declare(
     googletest
     GIT_REPOSITORY https://github.com/google/googletest.git
     GIT_TAG v1.17.0
-    DOWNLOAD_EXTRACT8TIMESTAMP TRUE
+    DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 
 set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
@@ -38,7 +38,7 @@ add_executable(output_exec
 
 # Ajout des repertoires d'en-tete necessaires a la cible main
 # - include/ : les fichiers .hpp
-target_include_directories(output_exec PUBLIC
+target_include_directories(output_exec PUBLICFirst go to the download page to get the latest distribution if you have not downloaded Doxygen already.   
     include
 )
 
