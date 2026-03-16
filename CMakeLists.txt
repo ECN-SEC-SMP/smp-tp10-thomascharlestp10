@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.19)
 
 # Nom du projet
-project(TP10)
+project(ALGOR_TP1)
 
 # Standard C++ utilise
 set(CMAKE_CXX_STANDARD 17)
@@ -11,25 +11,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # Tous les fichiers source du dossier src
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
-#lien avec google test
-
 include(FetchContent)
 
-FetchContent_Declare(
-    googletest
+FetchContent_Declare(googletest
     GIT_REPOSITORY https://github.com/google/googletest.git
     GIT_TAG v1.17.0
-    DOWNLOAD_EXTRACT8TIMESTAMP TRUE
+    DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 
+# Ne pas construire GoogleMock
 set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 
+# Option utile principalement sous Windows
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-
 FetchContent_MakeAvailable(googletest)
-
 enable_testing()
-
 
 # Creation de l'executable principal
 add_executable(output_exec
@@ -44,4 +40,3 @@ target_include_directories(output_exec PUBLIC
 
 # Liaison avec la bibliotheque trouvee
 target_link_libraries(output_exec ${CURSES_LIBRARIES})
-

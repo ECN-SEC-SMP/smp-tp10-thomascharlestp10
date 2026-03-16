@@ -7,7 +7,7 @@ function(do_fetch)
   message(VERBOSE "Fetching latest from the remote origin")
   execute_process(
     COMMAND "/usr/bin/git" --git-dir=.git fetch --tags --force "origin"
-    WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+    WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
     COMMAND_ERROR_IS_FATAL LAST
   )
 endfunction()
@@ -15,7 +15,7 @@ endfunction()
 function(get_hash_for_ref ref out_var err_var)
   execute_process(
     COMMAND "/usr/bin/git" --git-dir=.git rev-parse "${ref}^0"
-    WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+    WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
     RESULT_VARIABLE error_code
     OUTPUT_VARIABLE ref_hash
     ERROR_VARIABLE error_msg
@@ -36,8 +36,8 @@ endif()
 
 
 execute_process(
-  COMMAND "/usr/bin/git" --git-dir=.git show-ref "v1.17.0;DOWNLOAD_EXTRACT8TIMESTAMP;TRUE"
-  WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+  COMMAND "/usr/bin/git" --git-dir=.git show-ref "v1.17.0"
+  WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
   OUTPUT_VARIABLE show_ref_output
 )
 if(show_ref_output MATCHES "^[a-z0-9]+[ \\t]+refs/remotes/")
@@ -46,7 +46,7 @@ if(show_ref_output MATCHES "^[a-z0-9]+[ \\t]+refs/remotes/")
   if(can_fetch)
     do_fetch()
   endif()
-  set(checkout_name "v1.17.0;DOWNLOAD_EXTRACT8TIMESTAMP;TRUE")
+  set(checkout_name "v1.17.0")
 
 elseif(show_ref_output MATCHES "^[a-z0-9]+[ \\t]+refs/tags/")
   # Given a tag name that we already know about. We don't know if the tag we
@@ -55,7 +55,7 @@ elseif(show_ref_output MATCHES "^[a-z0-9]+[ \\t]+refs/tags/")
   # same commit as the tag we hold locally, don't do a fetch and assume the tag
   # hasn't moved on the remote.
   # FIXME: We should provide an option to always fetch for this case
-  get_hash_for_ref("v1.17.0;DOWNLOAD_EXTRACT8TIMESTAMP;TRUE" tag_sha error_msg)
+  get_hash_for_ref("v1.17.0" tag_sha error_msg)
   if(tag_sha STREQUAL head_sha)
     message(VERBOSE "Already at requested tag: ${tag_sha}")
     return()
@@ -64,7 +64,7 @@ elseif(show_ref_output MATCHES "^[a-z0-9]+[ \\t]+refs/tags/")
   if(can_fetch)
     do_fetch()
   endif()
-  set(checkout_name "v1.17.0;DOWNLOAD_EXTRACT8TIMESTAMP;TRUE")
+  set(checkout_name "v1.17.0")
 
 elseif(show_ref_output MATCHES "^[a-z0-9]+[ \\t]+refs/heads/")
   # Given a branch name without any remote and we already have a branch by that
@@ -75,10 +75,10 @@ elseif(show_ref_output MATCHES "^[a-z0-9]+[ \\t]+refs/heads/")
   if(can_fetch)
     do_fetch()
   endif()
-  set(checkout_name "origin/v1.17.0;DOWNLOAD_EXTRACT8TIMESTAMP;TRUE")
+  set(checkout_name "origin/v1.17.0")
 
 else()
-  get_hash_for_ref("v1.17.0;DOWNLOAD_EXTRACT8TIMESTAMP;TRUE" tag_sha error_msg)
+  get_hash_for_ref("v1.17.0" tag_sha error_msg)
   if(tag_sha STREQUAL head_sha)
     # Have the right commit checked out already
     message(VERBOSE "Already at requested ref: ${tag_sha}")
@@ -88,7 +88,7 @@ else()
     # We don't know about this ref yet, so we have no choice but to fetch.
     if(NOT can_fetch)
       message(FATAL_ERROR
-        "Requested git ref \"v1.17.0;DOWNLOAD_EXTRACT8TIMESTAMP;TRUE\" is not present locally, and not "
+        "Requested git ref \"v1.17.0\" is not present locally, and not "
         "allowed to contact remote due to UPDATE_DISCONNECTED setting."
       )
     endif()
@@ -100,13 +100,13 @@ else()
       message(VERBOSE "${error_msg}")
     endif()
     do_fetch()
-    set(checkout_name "v1.17.0;DOWNLOAD_EXTRACT8TIMESTAMP;TRUE")
+    set(checkout_name "v1.17.0")
 
   else()
     # We have the commit, so we know we were asked to find a commit hash
     # (otherwise it would have been handled further above), but we don't
     # have that commit checked out yet. We don't need to fetch from the remote.
-    set(checkout_name "v1.17.0;DOWNLOAD_EXTRACT8TIMESTAMP;TRUE")
+    set(checkout_name "v1.17.0")
     if(NOT error_msg STREQUAL "")
       message(WARNING "${error_msg}")
     endif()
@@ -126,7 +126,7 @@ if(git_update_strategy MATCHES "^REBASE(_CHECKOUT)?$")
   # branch isn't tracking the one we want to checkout.
   execute_process(
     COMMAND "/usr/bin/git" --git-dir=.git symbolic-ref -q HEAD
-    WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+    WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
     OUTPUT_VARIABLE current_branch
     OUTPUT_STRIP_TRAILING_WHITESPACE
     # Don't test for an error. If this isn't a branch, we get a non-zero error
@@ -142,7 +142,7 @@ if(git_update_strategy MATCHES "^REBASE(_CHECKOUT)?$")
   else()
     execute_process(
       COMMAND "/usr/bin/git" --git-dir=.git for-each-ref "--format=%(upstream:short)" "${current_branch}"
-      WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+      WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
       OUTPUT_VARIABLE upstream_branch
       OUTPUT_STRIP_TRAILING_WHITESPACE
       COMMAND_ERROR_IS_FATAL ANY  # There is no error if no upstream is set
@@ -165,7 +165,7 @@ endif()
 # Check if stash is needed
 execute_process(
   COMMAND "/usr/bin/git" --git-dir=.git status --porcelain
-  WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+  WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
   RESULT_VARIABLE error_code
   OUTPUT_VARIABLE repo_status
 )
@@ -179,7 +179,7 @@ string(LENGTH "${repo_status}" need_stash)
 if(need_stash)
   execute_process(
     COMMAND "/usr/bin/git" --git-dir=.git stash save --quiet;--include-untracked
-    WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+    WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
     COMMAND_ERROR_IS_FATAL ANY
   )
 endif()
@@ -187,13 +187,13 @@ endif()
 if(git_update_strategy STREQUAL "CHECKOUT")
   execute_process(
     COMMAND "/usr/bin/git" --git-dir=.git checkout "${checkout_name}"
-    WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+    WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
     COMMAND_ERROR_IS_FATAL ANY
   )
 else()
   execute_process(
     COMMAND "/usr/bin/git" --git-dir=.git rebase "${checkout_name}"
-    WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+    WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
     RESULT_VARIABLE error_code
     OUTPUT_VARIABLE rebase_output
     ERROR_VARIABLE  rebase_output
@@ -202,7 +202,7 @@ else()
     # Rebase failed, undo the rebase attempt before continuing
     execute_process(
       COMMAND "/usr/bin/git" --git-dir=.git rebase --abort
-      WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+      WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
     )
 
     if(NOT git_update_strategy STREQUAL "REBASE_CHECKOUT")
@@ -210,10 +210,10 @@ else()
       if(need_stash)
         execute_process(
           COMMAND "/usr/bin/git" --git-dir=.git stash pop --index --quiet
-          WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+          WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
           )
       endif()
-      message(FATAL_ERROR "\nFailed to rebase in: '/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src'."
+      message(FATAL_ERROR "\nFailed to rebase in: '/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src'."
                           "\nOutput from the attempted rebase follows:"
                           "\n${rebase_output}"
                           "\n\nYou will have to resolve the conflicts manually")
@@ -234,13 +234,13 @@ else()
       COMMAND "/usr/bin/git" --git-dir=.git tag -a
               -m "ExternalProject attempting to move from here to ${checkout_name}"
               ${tag_name}
-      WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+      WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
       COMMAND_ERROR_IS_FATAL ANY
     )
 
     execute_process(
       COMMAND "/usr/bin/git" --git-dir=.git checkout "${checkout_name}"
-      WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+      WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
       COMMAND_ERROR_IS_FATAL ANY
     )
   endif()
@@ -250,31 +250,31 @@ if(need_stash)
   # Put back the stashed changes
   execute_process(
     COMMAND "/usr/bin/git" --git-dir=.git stash pop --index --quiet
-    WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+    WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
     RESULT_VARIABLE error_code
     )
   if(error_code)
     # Stash pop --index failed: Try again dropping the index
     execute_process(
       COMMAND "/usr/bin/git" --git-dir=.git reset --hard --quiet
-      WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+      WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
     )
     execute_process(
       COMMAND "/usr/bin/git" --git-dir=.git stash pop --quiet
-      WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+      WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
       RESULT_VARIABLE error_code
     )
     if(error_code)
       # Stash pop failed: Restore previous state.
       execute_process(
         COMMAND "/usr/bin/git" --git-dir=.git reset --hard --quiet ${head_sha}
-        WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+        WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
       )
       execute_process(
         COMMAND "/usr/bin/git" --git-dir=.git stash pop --index --quiet
-        WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+        WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
       )
-      message(FATAL_ERROR "\nFailed to unstash changes in: '/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src'."
+      message(FATAL_ERROR "\nFailed to unstash changes in: '/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src'."
                           "\nYou will have to resolve the conflicts manually")
     endif()
   endif()
@@ -286,7 +286,7 @@ if(init_submodules)
     COMMAND "/usr/bin/git"
             --git-dir=.git 
             submodule update --recursive --init 
-    WORKING_DIRECTORY "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
+    WORKING_DIRECTORY "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src"
     COMMAND_ERROR_IS_FATAL ANY
   )
 endif()
