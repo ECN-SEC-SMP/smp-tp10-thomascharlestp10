@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build",
+  "command": "/usr/bin/g++ -I/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/include -g -std=gnu++17 -o CMakeFiles/output_exec.dir/src/funct.cpp.o -c /home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/src/funct.cpp",
+  "file": "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/src/funct.cpp",
+  "output": "CMakeFiles/output_exec.dir/src/funct.cpp.o"
+},
+{
+  "directory": "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build",
+  "command": "/usr/bin/g++ -I/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/include -g -std=gnu++17 -o CMakeFiles/output_exec.dir/src/main.cpp.o -c /home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/src/main.cpp",
+  "file": "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/src/main.cpp",
+  "output": "CMakeFiles/output_exec.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build",
+  "command": "/usr/bin/g++ -I/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src/googletest/include -I/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src/googletest -g -std=c++17 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "file": "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "output": "_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o"
+},
+{
+  "directory": "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build",
+  "command": "/usr/bin/g++ -isystem /home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src/googletest/include -isystem /home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src/googletest -g -std=c++17 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -o _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "file": "/home/thomas/Documents/SMP/smp-tp10-thomascharlestp10/build/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "output": "_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o"
+}
+]
