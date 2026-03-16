@@ -1,4 +1,4 @@
-#include "test.h"
+#include "funct.h"
 
 int main() {
     message();
