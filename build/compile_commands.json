@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/build",
-  "command": "/usr/bin/g++ -I/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/include -g -std=gnu++17 -o CMakeFiles/output_exec.dir/src/main.cpp.o -c /home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/src/main.cpp",
-  "file": "/home/charl/Documents/SMP/TP10/smp-tp10-thomascharlestp10/src/main.cpp",
-  "output": "CMakeFiles/output_exec.dir/src/main.cpp.o"
-}
-]

@@ -30,7 +30,6 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-
 # Creation de l'executable principal
 add_executable(output_exec
     ${SOURCES}
