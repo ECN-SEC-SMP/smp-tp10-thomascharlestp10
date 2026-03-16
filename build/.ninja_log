@@ -4,3 +4,7 @@
 3	1098	1773654112702723736	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	a9e07033c208f886
 3	3988	1773654115578723714	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	2f962fbfdf79f6f4
 4	130	1773654310766740814	lib/libgtest.a	e21429778cf18d0f
+3	24	1773654532278760388	CMakeFiles/output_exec.dir/src/main.cpp.o	9d58b3b1c703c5b3
+3	25	1773654532278760388	lib/libgtest_main.a	30ececf4ed42069a
+3	301	1773654532554760412	CMakeFiles/output_exec.dir/src/funct.cpp.o	fddae31a365e32e0
+301	397	1773654532650760419	output_exec	f4d18dda03678abc
